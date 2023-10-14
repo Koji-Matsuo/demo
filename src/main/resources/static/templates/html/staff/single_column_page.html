@@ -1,0 +1,82 @@
+<html>
+	<head>
+		<meta char="UTF-8"></meta>
+		<title>Single Column Page</title>
+		<link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">			
+		<link href="/css/common.css" rel="stylesheet">
+		<link href="/css/staffCommon.css" rel="stylesheet">
+		<link href="/css/single_column_page.css" rel="stylesheet">
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				THIS IS SINGLE COLUMN PAGE
+					<span sec:authorize="hasRole('ADMIN')" style="color: red;;">
+            			( 管理者 ) 
+        			</span>
+			</div>
+			<nav>
+				<ul class="global-nav">
+					<li><a href="staff">Back to INDEX</a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="wrap">
+			<h1>SINGLE COLUMN PAGE</h1>
+			<p>製作者の作業場です。</p>
+			<div class="work"> 
+				<h1>float を使って横並びさせます</h1>
+				<section class="clearfix">
+					<div class="text-area">
+						<h2 class="icon">学生の人柄や雰囲気</h2>
+						<p>面接官が自己紹介で確認したいのは、学生の人柄や雰囲気が自社に合っているかどうかという点です。<br>
+						業界や職種など、企業ごとに求めている人材の人柄や雰囲気は変わってきます。<br>
+						たとえば、営業職であれば元気に挨拶ができる人、事務職であれば落ち着いて理路整然と話ができる人、といったように職種でも求められる人材のイメージは変わってきます。<br>
+						そのため、面接官は自己紹介から人柄や雰囲気を判断して、自社で長く活躍できる人材かどうかを見ているのです。<br></p>
+					</div>	
+					<img src="/img/yaruki_moeru_man.png" alt="学生の人柄や雰囲気" class="image-area" width="300px" height="300px">
+				</section>
+				<section class="clearfix">
+					<div class="text-area">
+						<h2 class="icon">論理的に説明する能力</h2>
+						<p>自己紹介では、限られた時間の中でわかりやすく伝えるための論理的な説明能力も見られています。
+						社会人になると会議や打ち合わせなど、与えられた時間の中で仕事での課題や解決策を説明しなくてはなりません。
+						上記のような説明能力が、現時点で備わっているかどうかという点も面接では評価されているのです。
+						そのため、面接の自己紹介では限られた時間の中でも自分の魅力が伝わるように話す必要があります。
+						</p>
+					</div>
+				<section>
+				<section class="clearfix">
+					<div class="text-area">
+						<h2 class="icon">歴史</h2>
+						<table>
+							<tr>
+								<th>1993年5月</th>
+								<td>生まれる</td>
+							</tr>
+							<tr>
+								<th>2000年ころ</th>
+								<td>小１</td>
+							</tr>
+							<tr>
+								<th>2006年ころ</th>
+								<td>中１</td>
+							</tr>
+							<tr>
+								<th>2009年ころ</th>
+								<td>高専</td>
+							</tr>
+							<tr>
+								<th>2015年ころ</th>
+								<td>大学３年</td>
+							</tr>
+						</table>	
+					</div>
+				<section>
+			</div>									
+		</div>
+		<footer>
+			<small>(C)2017 Matsuo-studio.</small>
+		</footer>
+	</body>
+</html>

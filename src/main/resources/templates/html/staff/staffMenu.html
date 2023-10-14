@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<meta char="UTF-8"></meta>
+		<title>INDEX Page</title>
+		<link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">			
+		<link href="/css/common.css" rel="stylesheet">
+		<link href="/css/staffCommon.css" rel="stylesheet">
+		<link href="/css/index.css" rel="stylesheet">
+	</head>
+	<body>
+			<header>
+				<div class="logo">
+					スタッフメニュー
+					<span sec:authorize="hasRole('ADMIN')" style="color: red;;">
+            			( 管理者 ) 
+        			</span>
+				</div>
+				<div class="navi">
+					<nav>
+						<ul class="global-nav">
+							<li>ユーザー作成</li>
+							<li>パスワード変更</li>
+							<li><a href="single_column_page">Single Column Page</a></li>
+							<li><a href="two_column_page">Two Column Page</a></li>
+							<li><a href="japan">Jpan</a></li>
+							<li><a href="usa">USA</a></li>
+							<span sec:authorize="hasRole('ADMIN')">
+            					<li><a href="admin">管理者メニューへ</a></li>
+        					</span>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		<div class="wrap">
+			<div class="content">
+				<h1>Life is beautiful, How about do you think?</h1>
+				<p>このWebサイトは学習用です<br>html, css, javascript を学びながら完成を目指します。</p>
+				<p class="btn" onclicl="goToPortfolio()">Jpan</a></p>			
+			</div>		
+		</div>
+		<footer>
+			<small>(C)2017 Matsuo-studio.</small>
+				<form th:action="@{/logout}" th:method="post">
+					<button type="submit" class="btn">LogOut</button>
+				</form>
+		</footer>
+	</body>
+</html>

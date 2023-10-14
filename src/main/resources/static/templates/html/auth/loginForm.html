@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	  <title>ログイン</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+	<body>
+	<h1>ログイン</h1>
+	
+	<th:block th:if="${failureMessage eq null}">
+	  <div style="height:1em;"></div>
+	</th:block>
+	<th:block th:unless="${failureMessage eq null}">
+	  <div th:text="${failureMessage}" style="color:red;height:1em;"></div>
+	</th:block>
+	<th:block th:if="${session['SPRING_SECURITY_LAST_EXCEPTION'] eq null}">
+	  <div style="height:1em;"></div>
+	</th:block>
+	<th:block th:unless="${session['SPRING_SECURITY_LAST_EXCEPTION'] eq null}">
+	  <div th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" style="color:red;height:1em;">ログインIDまはたパスワードが間違っています。</div>
+	</th:block>
+	
+	<form th:action="@{/auth}" th:method="POST" >
+		  <table>
+		    <tr>
+		      <th>ログインID</th>
+		        <td><input tpe="text" name="userId"/></td>
+		    </tr>
+		    <tr>
+		      <th>パスワード</th>
+		      <td><input type="password" name="password"/></td>
+		    </tr>
+		  </table>
+		  <button type="submit" class="btn">ログイン</button>
+	</form>
+	</body>
+</html>

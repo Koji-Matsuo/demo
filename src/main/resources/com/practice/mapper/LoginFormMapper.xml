@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.practice.mapper.LoginFormMapper">
+    
+     <select
+        id="findMUser"
+        parameterType="String"
+        resultType="com.practice.entity.MUser">
+        select 
+			user_id as userId
+			,user_name as userName
+			,mail_address as mailAddress
+			,phone_number as phoneNumber
+			,role_code as roleCode
+			,password as password
+        from 
+        	m_user 
+        where 
+        	user_id = #{userId}
+    </select>
+ 
+</mapper>

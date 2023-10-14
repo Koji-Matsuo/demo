@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<meta char="UTF-8"></meta>
+		<title>管理者メニュー</title>
+		<link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">			
+		<link href="/css/common.css" rel="stylesheet">
+		<link href="/css/adminCommon.css" rel="stylesheet">
+		<link href="/css/index.css" rel="stylesheet">
+	</head>
+	<body>
+			<header>
+				<div class="logo">管理者メニュー</div>
+				<div class="navi">
+					<nav>
+						<ul class="global-nav">
+							<li><a href="staff">スタッフメニュー</a></li>
+							<li>問い合わせ対応</li>
+							<li>パスワード変更</li>
+							<li>ユーザー作成</li>
+							<li>ユーザー乗り込み</li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		<div class="wrap">
+			<div class="content">
+				<h1>Life is beautiful, How about do you think?</h1>
+				<p>このWebサイトは学習用です<br>html, css, javascript を学びながら完成を目指します。</p>
+				<p class="btn" onclicl="goToPortfolio()">Jpan</a></p>			
+			</div>		
+		</div>
+		<footer>
+			<small>(C)2017 Matsuo-studio.</small>
+				<form th:action="@{/logout}" th:method="post">
+					<button type="submit" class="btn">LogOut</button>
+				</form>
+		</footer>
+	</body>
+</html>

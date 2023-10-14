@@ -1,0 +1,38 @@
+p {
+	margin-left:10px;
+}
+th {
+	width: 200px;
+}
+td {
+	width: 500px;
+}
+.work {
+	height: calc(100vh - 320px);
+	width: calc(100vw - 30px);
+}
+.clearfix {	
+	margin-bottom: 35px;
+}
+.clearfix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.text-area {
+	width: 70%;
+	float: left;
+}
+
+.text-area apan {
+	font-weight: bold;
+}
+
+.image-area {
+	float: right;
+}
+
+
+
+

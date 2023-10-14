@@ -1,0 +1,163 @@
+a {
+	color: #000000;
+	text-decoration: none;   /*下線なし*/
+}
+a:visited {
+	color: #788d98; /*再訪問時は色を変える*/
+}
+a:hover {
+	text-decoration:underline;   /*下線あり*/
+}
+header {
+	width: calc(100vw - 20px);
+	height: 100px;
+	margin: 0 auto;
+	background-color: rgba(255,255,255,0.5);
+}
+header ul {
+	margin: 0;
+	padding: 0;
+
+}
+header .logo {
+	font-size: 40px;
+    font-family: 'Bitter', serif;
+	font-weight: bold;	
+	float: left;
+	margin-top: 25px;
+    padding-left: 20px;
+	clear: both;
+}
+header .global-nav {
+	float: right;
+	background-color: rgb(255,255,255);
+	margin: 60px 10px 0 10px;
+}
+header .global-nav li {
+	margin: 0 20px 0 20px;
+	float: left;
+	font-size: 20px;
+	list-style: none;
+	font-family: 'Bitter', serif;
+}
+header .global-nav li a:hover {
+	border-bottom: 2px solid #333333;
+	padding-bottom: 3px;
+	text-decoration: none;
+}
+header .global-nav :after {
+	content: "";
+	clear: both;    /*float解除*/
+}
+h1 {
+	font-family: 'Bitter', serif;
+	border-bottom: 1px solid #ffffff;
+	padding: 3px; 
+}
+h2 {
+	font-family: 'Bitter', serif;
+}
+table {
+	border-spacing: 0;  /*隣り合うボーダーの距離*/
+	border-collapse: collapse; /*隣り合うボーダーを重ねる*/
+}
+th {
+	background-color: #f0f0f0;
+	padding: 3px 10px;
+	border: 1px solid #cccccc;
+}
+td {
+	background-color: #ffffff;
+	padding: 3px 10px;
+	border: 1px solid #cccccc;
+}
+button {
+	background-color: #cccccc;
+}
+.wrap {
+	margin-top: 10px;
+	padding: 0 0 5px 10px;
+}
+.content {
+	width: calc(100vw - 20px);
+	margin: 0 auto;
+}
+.work {
+	overflow-y: auto;
+}
+.work::-webkit-scrollbar{	/* スクロールを隠す　ブラウザはクロムのみ*/
+ 	display: none;
+}
+.flexbox {
+	display: flex; 	/*横並びにする*/
+}
+.flexbox.start {
+	justify-content: flex-start;	/*左端からブロックを横並び*/
+}
+.flexbox.end {
+	justify-content: flex-end;	/*右端からブロックを横並び*/
+}
+.flexbox.center {
+	justify-content: center;	/*中央からブロックを横並び*/
+}
+.flexbox.between {
+	justify-content: space-between;	/*左右端に空白を入れずに等間隔でブロックを横並び*/
+}
+.flexbox.around {
+	justify-content: space-around;	/*左右端に空白を入れて等間隔でブロックを横並び*/
+}
+.sidebar {
+	padding: 20px 0 0 20px;
+	overflow-y: auto;
+}
+.sidebar::-webkit-scrollbar{	/* スクロールを隠す　ブラウザはクロムのみ*/
+ 	display: none;
+}
+.sidebar h2 {
+	padding-bottom: 10px;
+}
+
+.sidebar li {
+	padding-bottom: 10px;
+}
+
+.btn {
+	display: inline-block;
+	padding: 5px 15px;
+	text-align:center;
+	background-color: #666666;
+	border-radius: 8px;
+	cursor: pointer;
+	box-shadow:1px 0 #333333;
+}
+.btn:hover {
+	background-color: #555555;
+	box-shadow:1px 0 #222222;
+	transform: translateY(5px);  /*5px下に再配置*/
+}
+.icon:before {
+	content: "";
+	padding-right: 10px;
+	border-left: 7px solid #9944ff;
+}
+footer {
+	position: absolute;
+	bottom: 10px;
+	width: calc(100vw - 20px);
+	background-color: rgba(255,255,255,0.5);
+	text-align: center;
+	padding : 20px 0;
+}
+footer small {
+	font-size: 12px;
+}
+.errorArea {
+	background-color: pink;
+}
+.errorFont {
+	padding-left: 20px;
+	color: red;
+}
+.hide {
+	display: none;
+}

@@ -1,0 +1,9 @@
+body {
+	background-color: rosybrown;
+}
+.wrap {
+	margin-top: 10px;
+	background-color: rgba(255,255,255,0.6);
+	padding: 0 0 5px 10px;
+
+}
