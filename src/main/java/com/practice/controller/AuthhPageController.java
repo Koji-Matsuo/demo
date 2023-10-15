@@ -1,10 +1,17 @@
 package com.practice.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practice.code.ContorollerCode;
+import com.practice.input.MakeUserForm;
+import com.practice.service.MakeUserService;
 
 /**
  * 認証処理コントローラー。
@@ -12,6 +19,8 @@ import com.practice.code.ContorollerCode;
 @Controller
 public class AuthhPageController {
 
+	@Autowired
+	private MakeUserService service;
 	
 	/**
 	 * ログイン画面。
@@ -51,6 +60,41 @@ public class AuthhPageController {
 	@GetMapping(ContorollerCode.ACCESS_DISABLE)
 	public String accessDenined() {
 		return ContorollerCode.ACCESS_DISABLE_URL;
+	}
+	
+	/**
+	 * ユーザー作成画面。
+	 * @return
+	 */
+	@GetMapping(ContorollerCode.MAKE_USER)
+	public String makeUser(
+			Model model
+			,MakeUserForm form
+			) {
+		model.addAttribute("makeUserForm",form);
+		return ContorollerCode.MAKE_USER_URL;
+	}
+	
+	/**
+	 * ユーザー登録。
+	 * @param model 
+	 * @param form
+	 * @param bindingResult
+	 * @return
+	 */
+	@PostMapping(ContorollerCode.MAKE_USER)
+	public String entryMakeUser(
+			Model model
+			,@ModelAttribute @Validated MakeUserForm form
+			,BindingResult bindingResult
+			) {
+		 // 入力チェック判定
+        if (!bindingResult.hasErrors()){
+        	//登録処理
+        	service.insertUser(form);
+        }
+        model.addAttribute("makeUserForm",form);
+        return ContorollerCode.MAKE_USER_URL;
 	}
 	
 }

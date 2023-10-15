@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.practice.entity.MDictionary;
 import com.practice.entity.MUser;
 import com.practice.entity.TContact;
-import com.practice.form.ContactForm;
+import com.practice.input.ContactForm;
 
 @Repository
 public class ContactRepositoryImpl implements ContactRepository{	

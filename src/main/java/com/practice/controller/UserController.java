@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.practice.code.ContorollerCode;
 import com.practice.code.RoleCode;
 import com.practice.entity.MUser;
-import com.practice.form.ContactForm;
+import com.practice.input.ContactForm;
 import com.practice.service.ContactMapperService;
 import com.practice.service.ContactService;
 import com.practice.session.SecuritySession;

@@ -161,3 +161,6 @@ footer small {
 .hide {
 	display: none;
 }
+.text-danger {
+	color:red;
+}

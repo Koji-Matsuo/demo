@@ -19,5 +19,6 @@ public class MUser {
 	private String phoneNumber;
 	
 	private String roleCode;
-
+	
+	private String rideUser;
 }

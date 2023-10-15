@@ -1,4 +1,4 @@
-package com.practice.form;
+package com.practice.input;
 
 import java.util.List;
 

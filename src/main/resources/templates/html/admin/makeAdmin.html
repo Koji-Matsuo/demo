@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	  <title>ユーザー作成</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	  <link href="/css/common.css" rel="stylesheet">
+	  <link href="/css/adminCommon.css" rel="stylesheet">
+	  <link href="/css/index.css" rel="stylesheet">
+</head>
+	<body>
+	<h1>ユーザー作成</h1>
+	
+	<form th:method="post" th:action="@{make_admin}" th:object="${makeAdminForm}" >
+		  <table>
+		    <tr>
+		      <th>
+				  ログインID
+			</th>
+		        <td>
+					<input tpe="text" th:field="*{userId}"  th:value="${userId}"/>
+					<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="text-danger">Title Error</span>
+				</td>
+		    </tr>
+		    <tr>
+		      <th>
+				  お名前
+			</th>
+		        <td>
+					<input tpe="text" th:field="*{userName}"  th:value="${userName}"/>
+					<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger">Title Error</span>
+				</td>
+		    </tr>
+		    <tr>
+		      <th>
+				  パスワード
+			  </th>
+		      <td>
+				  <input type="password" th:field="*{password}" th:value="${password}"/>
+		     	  <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger">Title Error</span>
+		     </td>
+		    </tr>
+		    <tr>
+		      <th>
+				  メールアドレス
+			 </th>
+		      <td>
+				  <input type="text" th:field="*{mailAddress}"  th:value="${mailAddress}" style="width:500px;"/>
+				  <span th:if="${#fields.hasErrors('mailAddress')}" th:errors="*{mailAddress}" class="text-danger">Title Error</span>
+			</td>
+		    </tr>
+		    <tr>
+		      <th>
+				  電話番号
+			  </th>
+		      <td>
+				  <input type="text" th:field="*{phoneNumber}" th:value="${phoneNumber}"/>
+			 	  <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger">Title Error</span>
+			  </td>
+		    </tr>
+		  </table>
+		  <div style="height:20px;"></div>
+		  <button type="submit" class="btn">ユーザー作成</button>
+		  <div style="height:5px;"></div>
+		  <div><a href="auth">ログイン</a></div>
+	</form>
+	</body>
+</html>

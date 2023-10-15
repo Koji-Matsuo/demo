@@ -2,9 +2,12 @@ package com.practice.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
@@ -27,6 +30,9 @@ public class SecurityConfig {
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.SWITH)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN, RoleCode.STAFF)
 	                // 管理者権限
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.ADMIN_MENU)).hasRole(RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.MAKE_ADMIN)).hasRole(RoleCode.ADMIN)
+	                //スタッフ権限
+	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.MAKE_STAFF)).hasRole(RoleCode.STAFF)
 	                // 管理者・スタッフ権限
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.STAFF_MENU)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.JAPAN)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
@@ -34,9 +40,12 @@ public class SecurityConfig {
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.TW_CLMN_PG)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.USA)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
 	                // ユーザー権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.USER_MENU)).hasRole(RoleCode.USER)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.CONTACT)).hasRole(RoleCode.USER)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.JDBC_CONTACT)).hasRole(RoleCode.USER)
+	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ContorollerCode.CONTACT)).hasRole(RoleCode.USER)
+	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ContorollerCode.JDBC_CONTACT)).hasRole(RoleCode.USER)
+	                // 管理者・ユーザー権限
+	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.USER_MENU)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.CONTACT)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.JDBC_CONTACT)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
 	                
                 // 上記以外は権限なしでアクセス可能
                 .anyRequest().permitAll();               
@@ -77,6 +86,11 @@ public class SecurityConfig {
             //.expiredSessionStrategy(new CustomSessionInformationExpiredStrategy());
         });
         return http.build();
+    }
+    
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
     
 }

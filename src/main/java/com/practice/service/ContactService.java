@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.practice.entity.MDictionary;
 import com.practice.entity.MUser;
 import com.practice.entity.TContact;
-import com.practice.form.ContactForm;
+import com.practice.input.ContactForm;
 
 @Service
 @Transactional

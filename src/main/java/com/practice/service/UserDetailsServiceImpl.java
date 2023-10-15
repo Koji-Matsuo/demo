@@ -21,12 +21,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
 		 MUser user = mapper.findMUser(username);
-        if (user == null) {
+		if (user == null) {
             throw new UsernameNotFoundException("User " + username + "was not found in the database");
         }
         return User.withUsername(user.getUserId())
         		.roles(user.getRoleCode())
-        		.password("{noop}" + user.getPassword())
+        		.password(user.getPassword())
         		.build();
     }
 }
