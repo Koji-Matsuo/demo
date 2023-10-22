@@ -1,8 +1,8 @@
 /**
  * submit します。 
  */
-function submit(val){
+function goToUser(val){
 	let form = document.getElementsByTagName('form')[0];
-    form.userId.value = val;
+	document.getElementById('userId').value = val;
     formSubmit(form,'./../admin/ride_user');
 }

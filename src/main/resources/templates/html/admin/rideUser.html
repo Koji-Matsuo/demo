@@ -8,18 +8,19 @@
 		<link href="/css/rideUser.css" rel="stylesheet">
 		<script type="text/javascript" src="/js/common.js"></script>
 		<script type="text/javascript" src="/js/rideUser.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	</head>
 	<body>
-			<header>
-				<div class="logo">ユーザー乗り込み</div>
-				<div class="navi">
-					<nav>
-						<ul class="global-nav">
-							<li><a href="admin">管理者メニュー</a></li>
-						</ul>
-					</nav>
-				</div>
-			</header>
+		<header>
+			<div class="logo">ユーザー乗り込み</div>
+			<div class="navi">
+				<nav>
+					<ul class="global-nav">
+						<li><a href="admin">管理者メニュー</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
 		<form th:action="@{./../admin/ride_user}" th:object="${rideUserForm}" th:method="post">
 			<input type="hidden" th:field="*{userId}"value=""/>
 			<section>
@@ -33,7 +34,7 @@
 							<th>メールアドレス</th>
 							<th>権限</th>
 						<tr>
-						<tr th:each="rideUser : *{rideUserList}" class="clickUser" th:attr ="onclick='submit(\'' + ${rideUser.userId} + '\');'">
+						<tr th:each="rideUser : *{rideUserList}" class="clickUser" th:attr ="onclick='goToUser(\'' + ${rideUser.userId} + '\');'">
 								<td  th:text="${rideUser.userId}"></td>
 								<td  th:text="${rideUser.userName}"    ></td>
 					            <td  th:text="${rideUser.mailAddress}"></td>

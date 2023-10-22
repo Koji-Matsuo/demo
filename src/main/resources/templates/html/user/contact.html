@@ -7,6 +7,9 @@
 			<link href="/css/common.css" rel="stylesheet">
 			<link href="/css/userCommon.css" rel="stylesheet">
 			<link href="/css/contact.css" rel="stylesheet">
+			<script type="text/javascript" src="/js/common.js"></script>
+			<script type="text/javascript" src="/js/contact.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		</meta>
 	</head>
 	<body>
@@ -61,7 +64,7 @@
 						</dt>
 						<dd><textarea th:field="*{contactMessage}" maxlengh="2000"></textarea></dd>	
 					</dl>
-					<button type="submit" class="btn" onclick="submit()">送信</button>
+					<button type="button" class="btn" onclick="entry()">登録</button>
 					</section>
 					<section>
 						<h2 class="icon" id="contact">お問い合わせ履歴</h2>
