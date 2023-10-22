@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practice.code.ContorollerCode;
+import com.practice.entity.MUser;
 import com.practice.input.MakeUserForm;
 import com.practice.service.MakeUserService;
 
@@ -69,8 +70,8 @@ public class AuthhPageController {
 	@GetMapping(ContorollerCode.MAKE_USER)
 	public String makeUser(
 			Model model
-			,MakeUserForm form
 			) {
+		MakeUserForm form = new MakeUserForm();
 		model.addAttribute("makeUserForm",form);
 		return ContorollerCode.MAKE_USER_URL;
 	}
@@ -90,8 +91,15 @@ public class AuthhPageController {
 			) {
 		 // 入力チェック判定
         if (!bindingResult.hasErrors()){
+        	//重複チェック
+        	MUser user = service.findMUser(form.getUserId());
         	//登録処理
-        	service.insertUser(form);
+        	if (user == null) {
+        		service.insertUser(form);
+            	model.addAttribute("message","ユーザーが作成されました。");		
+        	} else {
+        		model.addAttribute("message", "ユーザーがすでに存在しています。");
+        	}
         }
         model.addAttribute("makeUserForm",form);
         return ContorollerCode.MAKE_USER_URL;

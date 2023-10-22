@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.practice.mapper.RideUserMapper">
+    
+     <select
+        id="findRideMUser"
+        resultType="com.practice.entity.MUser">
+        select 
+			user_id as userId
+			,user_name as userName
+			,mail_address as mailAddress
+			,phone_number as phoneNumber
+			,role_code as roleCode
+			,password as password
+			,ride_user as rideUser
+        from 
+        	m_user 
+       where 
+            role_code = 'USER'
+       order by 
+            role_code
+            ,user_id
+    </select>
+    
+    <update id="updateRideMUser"
+             parameterType="String">
+        update
+        	m_user 
+    	set
+    		ride_user = #{rideUser} 
+    	where
+    	    user_id = #{userId}
+    </update>
+ 
+</mapper>

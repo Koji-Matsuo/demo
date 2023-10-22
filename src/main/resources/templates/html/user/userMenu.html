@@ -9,13 +9,23 @@
 	</head>
 	<body>
 			<header>
-				<div class="logo">メニュー</div>
+				<div class="logo">
+					メニュー
+					<span sec:authorize="hasRole('ADMIN')" style="color: red;;">
+            			( 管理者 ) 
+        			</span>
+				</div>
 				<div class="navi">
 					<nav>
 						<ul class="global-nav">
-							<li>パスワード変更</li>
-							<li><a href="contact">お問い合わせ MyBatis</a></li>
-							<li><a href="contactJdbc">お問い合わせ JDBC</a></li>
+						    <li>
+							    <a sec:authorize="hasRole('ADMIN')" href="./../admin/admin">
+		            			    管理者メニューへ
+		        			    </a>
+        			        </li>
+							<li>ユーザー情報</li>
+							<li><a href="./../user/contact">お問い合わせ MyBatis</a></li>
+							<li><a href="./../user/contactJdbc">お問い合わせ JDBC</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -23,13 +33,12 @@
 		<div class="wrap">
 			<div class="content">
 				<h1>Life is beautiful, How about do you think?</h1>
-				<p>このWebサイトは学習用です<br>html, css, javascript を学びながら完成を目指します。</p>
-				<p class="btn" onclicl="goToPortfolio()">Jpan</a></p>			
+				<p>このWebサイトは学習用です<br>html, css, javascript を学びながら完成を目指します。</p>	
 			</div>		
 		</div>
 		<footer>
 			<small>(C)2017 Matsuo-studio.</small>
-				<form th:action="@{/logout}" th:method="post">
+				<form th:action="@{./../auth/logout}" th:method="post">
 					<button type="submit" class="btn">LogOut</button>
 				</form>
 		</footer>

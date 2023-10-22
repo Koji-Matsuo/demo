@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practice.code.ContorollerCode;
+import com.practice.entity.MUser;
 import com.practice.input.MakeAdminForm;
-import com.practice.input.MakeUserForm;
+import com.practice.input.RideUserForm;
 import com.practice.service.MakeUserService;
+import com.practice.service.RideUserService;
 import com.practice.session.SecuritySession;
 
 
@@ -23,8 +25,15 @@ import com.practice.session.SecuritySession;
 public class AdminController extends SecuritySession{
 	
 	@Autowired
-	private MakeUserService service;
+	private MakeUserService mkUserService;
+	@Autowired
+	private RideUserService rdUserService;
+
 	
+	/**
+	 * メニュー画面。
+	 * @return
+	 */
 	@GetMapping(ContorollerCode.ADMIN_MENU)
 	public String admin() {
 		return ContorollerCode.ADMIN_MENU_URL;
@@ -37,7 +46,7 @@ public class AdminController extends SecuritySession{
 	@GetMapping(ContorollerCode.MAKE_ADMIN)
 	public String makeUser(
 			Model model
-			,MakeUserForm form
+			,MakeAdminForm form
 			) {
 		model.addAttribute("makeAdminForm",form);
 		return ContorollerCode.MAKE_ADMIN_URL;
@@ -52,17 +61,47 @@ public class AdminController extends SecuritySession{
 	 */
 	@PostMapping(ContorollerCode.MAKE_ADMIN)
 	public String entryMakeUser(
-			Model model
-			,@ModelAttribute @Validated MakeAdminForm form
+			@ModelAttribute @Validated MakeAdminForm form
 			,BindingResult bindingResult
+			,Model model
 			) {
 		 // 入力チェック判定
         if (!bindingResult.hasErrors()){
+        	//重複チェック
+        	MUser user = mkUserService.findMUser(form.getUserId());
         	//登録処理
-        	service.insertAdmin(form);
+        	if (user == null) {
+        		mkUserService.insertAdmin(form);
+            	model.addAttribute("message","ユーザーが作成されました。");		
+        	} else {
+        		model.addAttribute("message", "ユーザーがすでに存在しています。");
+        	}
         }
         model.addAttribute("makeAdminForm",form);
         return ContorollerCode.MAKE_ADMIN_URL;
 	}
+	
+	/**
+	 * ユーザー乗り込み画面初期表示。
+	 * @return
+	 */
+	@GetMapping(ContorollerCode.RIDE_USER)
+	public String rideUser(
+			RideUserForm form
+			,Model model
+			) {
+		form.setRideUserList(rdUserService.findRideMUser());
+		model.addAttribute("rideUserForm",form);
+		return ContorollerCode.RIDE_USER_URL;
+	}
 
+	@PostMapping(ContorollerCode.RIDE_USER)
+	public String rideUserPost(
+			RideUserForm form
+			,Model model) {
+		rdUserService.updateRideMUser(getUsername(), form.getUserId());
+		return ContorollerCode.USER_MENU_URL;
+	}
+	
+	
 }

@@ -3,6 +3,7 @@ package com.practice.service;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.practice.entity.MUser;
 import com.practice.input.MakeAdminForm;
 import com.practice.input.MakeStaffForm;
 import com.practice.input.MakeUserForm;
@@ -32,5 +33,12 @@ public interface MakeUserService {
      * @param form
      */
     void insertAdmin(MakeAdminForm form);
+    
+    /**
+     * ユーザー検索。
+     * @param userID
+     * @return
+     */
+    MUser findMUser(String userID);
 
 }

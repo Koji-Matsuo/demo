@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<meta char="UTF-8"></meta>
+		<title>ユーザー乗り込み</title>
+		<link href="https://fonts.googleapis.com/css?family=Bitter:400,700" rel="stylesheet">			
+		<link href="/css/common.css" rel="stylesheet">
+		<link href="/css/adminCommon.css" rel="stylesheet">
+		<link href="/css/rideUser.css" rel="stylesheet">
+		<script type="text/javascript" src="/js/common.js"></script>
+		<script type="text/javascript" src="/js/rideUser.js"></script>
+	</head>
+	<body>
+			<header>
+				<div class="logo">ユーザー乗り込み</div>
+				<div class="navi">
+					<nav>
+						<ul class="global-nav">
+							<li><a href="admin">管理者メニュー</a></li>
+						</ul>
+					</nav>
+				</div>
+			</header>
+		<form th:action="@{./../admin/ride_user}" th:object="${rideUserForm}" th:method="post">
+			<input type="hidden" th:field="*{userId}"value=""/>
+			<section>
+				<h2 class="icon" >乗り込みユーザー一覧</h2>
+				<h3>乗り込むユーザーを選択してください。</h3>
+				<div class="rideUserScroll">
+					<table>
+						<tr>
+							<th>ユーザーID</th>
+							<th>ユーザー名</th>
+							<th>メールアドレス</th>
+							<th>権限</th>
+						<tr>
+						<tr th:each="rideUser : *{rideUserList}" class="clickUser" th:attr ="onclick='submit(\'' + ${rideUser.userId} + '\');'">
+								<td  th:text="${rideUser.userId}"></td>
+								<td  th:text="${rideUser.userName}"    ></td>
+					            <td  th:text="${rideUser.mailAddress}"></td>
+								<td  th:text="${rideUser.roleCode}" ></td>
+						</tr>
+					</table>
+			    </div>
+			</section>
+		</form>	
+	</body>
+</html>

@@ -18,14 +18,14 @@
 				<div class="navi">
 					<nav>
 						<ul class="global-nav">
-							<li><a href="make_staff">ユーザー作成</a></li>
-							<li>パスワード変更</li>
-							<li><a href="single_column_page">Single Column Page</a></li>
-							<li><a href="two_column_page">Two Column Page</a></li>
-							<li><a href="japan">Jpan</a></li>
-							<li><a href="usa">USA</a></li>
+							<li><a href="./../staff/make_staff">ユーザー作成</a></li>
+							<li>ユーザー情報</li>
+							<li><a href="./../staff/single_column_page">Single Column Page</a></li>
+							<li><a href="./../staff/two_column_page">Two Column Page</a></li>
+							<li><a href="./../staff/japan">Jpan</a></li>
+							<li><a href="./../staff/usa">USA</a></li>
 							<span sec:authorize="hasRole('ADMIN')">
-            					<li><a href="admin">管理者メニューへ</a></li>
+            					<li><a href="./../admin/admin">管理者メニューへ</a></li>
         					</span>
 						</ul>
 					</nav>
@@ -40,7 +40,7 @@
 		</div>
 		<footer>
 			<small>(C)2017 Matsuo-studio.</small>
-				<form th:action="@{/logout}" th:method="post">
+				<form th:action="@{./../auth/logout}" th:method="post">
 					<button type="submit" class="btn">LogOut</button>
 				</form>
 		</footer>

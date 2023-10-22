@@ -10,12 +10,19 @@
 	<body>
 	<h1>ユーザー作成</h1>
 	
-	<form th:method="post" th:action="@{make_admin}" th:object="${makeAdminForm}" >
+	<form th:method="post" th:action="@{./../admin/make_admin}" th:object="${makeAdminForm}" >
+		<th:block th:if="${message ne null}">
+		  	<div th:text="${message}" style="color:red;height:2em;"></div>
+		</th:block>
+		<th:block th:if="${message eq null}">
+		  	<div style="height:2em;"></div>
+		</th:block>
+		  
 		  <table>
 		    <tr>
-		      <th>
+		        <th>
 				  ログインID
-			</th>
+				</th>
 		        <td>
 					<input tpe="text" th:field="*{userId}"  th:value="${userId}"/>
 					<span th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="text-danger">Title Error</span>
@@ -28,6 +35,18 @@
 		        <td>
 					<input tpe="text" th:field="*{userName}"  th:value="${userName}"/>
 					<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="text-danger">Title Error</span>
+				</td>
+		    </tr>
+		    <tr>
+		    <th>
+				 ユーザー
+			</th>
+		        <td>
+					<select th:field="*{roleCode}" >
+						<option th:value="ADMIN">管理者</option>
+						<option th:value="STAFF">スタッフ</option>
+						<option th:value="USER">一般利用者</option>
+					</select>
 				</td>
 		    </tr>
 		    <tr>
@@ -61,7 +80,7 @@
 		  <div style="height:20px;"></div>
 		  <button type="submit" class="btn">ユーザー作成</button>
 		  <div style="height:5px;"></div>
-		  <div><a href="auth">ログイン</a></div>
+		  <div><a href="./../admin/admin">メニュー</a></div>
 	</form>
 	</body>
 </html>

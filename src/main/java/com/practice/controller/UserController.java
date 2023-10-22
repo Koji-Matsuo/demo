@@ -29,7 +29,6 @@ public class UserController extends SecuritySession{
 	@Autowired private ContactMapperService mapperService;
 	@Autowired private ContactService service;
 	
-	
 	/**
 	 * 管理者権限で乗り込んでいるか確認する。
 	 * @return
@@ -44,9 +43,21 @@ public class UserController extends SecuritySession{
 		return false;
 	}
 	
+	/**
+	 * userId を取得する。
+	 * @return
+	 */
+	private String getUserId() {
+		String userId = getUsername();
+		if (isAdmin()) {
+			MUser user = mapperService.findMUser(userId);
+			return user.getRideUser();
+		}
+		return userId;		 
+	}
 	
 	/**
-	 * 
+	 * メニュー画面に遷移する。
 	 * @param model
 	 * @return
 	 */
@@ -82,7 +93,7 @@ public class UserController extends SecuritySession{
 		 // 入力チェック判定
         if (!bindingResult.hasErrors()){
         	//登録処理
-        	mapperService.insertTContact(form);
+        	mapperService.insertTContact(form, getUserId());
         	return ContorollerCode.REDIRECT_CONTACT_URL;
         }
         model.addAttribute("contactForm",setWindowMapperLists(form));
@@ -104,7 +115,7 @@ public class UserController extends SecuritySession{
 	 */
 	private ContactForm setWindowMapperLists(ContactForm form) {
 		//ToDo ユーザー情報からユーザーIDを取得する
-		form.setWContactList(mapperService.findContactListJoin());
+		form.setWContactList(mapperService.findContactList(getUserId()));
 		form.setContactTypeList(mapperService.findContactTypeList());
 		form.setHowToContactList(mapperService.findHowToContactList());
 		return form;
@@ -138,7 +149,7 @@ public class UserController extends SecuritySession{
 		 // 入力チェック判定
         if (!bindingResult.hasErrors()){
         	//登録処理
-        	service.insertTContact(form);
+        	service.insertTContact(form, getUserId());
         	return ContorollerCode.JDBC_REDIRECT_CONTACT_URL;
         }
         model.addAttribute("contactForm",setWindowLists(form));
@@ -160,9 +171,7 @@ public class UserController extends SecuritySession{
 	 * @return ContactForm の登録用フォーム
 	 */
 	private ContactForm setWindowLists(ContactForm form) {
-		//ToDo ユーザー情報からユーザーIDを取得する
-		MUser user = service.findMUser("1");	
-		form.setContactList(service.findContactList(user.getUserId()));
+		form.setContactList(service.findContactList(getUserId()));
 		form.setContactTypeList(service.findContactTypeList());
 		form.setHowToContactList(service.findHowToContactList());
 		return form;

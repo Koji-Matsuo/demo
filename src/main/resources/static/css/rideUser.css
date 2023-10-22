@@ -1,0 +1,12 @@
+.clickUser td{
+	background-color : transparent;
+}
+
+.clickUser{
+	background-color : #ffffff;
+}
+
+.clickUser:hover {
+	background-color : green;
+	cursor: pointer;
+}

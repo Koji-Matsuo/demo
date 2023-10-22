@@ -7,7 +7,7 @@
 
 
 	<!-- マッピング定義(rooms) -->	
-	<resultMap type="com.practice.entity.WContact" id="mapContactListJoin">
+	<resultMap type="com.practice.entity.WContact" id="mapContactList">
 	    <id column = "contact_type" property="contactType"></id>
 	    <id column = "howto_contact" property="howtoContact"></id>
 	    <result column="user_name" property="userName"></result>
@@ -21,8 +21,9 @@
 	</resultMap>
 	       
     <select
-        id="findContactListJoin"
-        resultMap="mapContactListJoin">
+        id="findContactList"
+        resultMap="mapContactList"
+        parameterType="String">
     		select
 		    main.user_name,
 			main.mail_address, 
@@ -43,7 +44,7 @@
 		        sub02.dic_page = 2
 		        and sub02.dic_section = main.contact_type
 		where 
-		    main.user_id = 1  
+		    main.user_id = #{user_id}
 		order by 
 		    main.contact_id desc
     </select>        
@@ -51,16 +52,18 @@
     
      <select
         id="findMUser"
-        resultType="com.practice.entity.MUser">
+        resultType="com.practice.entity.MUser"
+        parameterType="String">
         select 
 			user_id as userId
 			,user_name as userName
 			,mail_address as mailAddress
 			,phone_number as phoneNumber
+			,ride_user rideUser
         from 
         	m_user 
         where 
-        	user_id=1
+        	user_id=#{user_id}
     </select>
     <select
         id="findContactTypeList"

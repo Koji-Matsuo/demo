@@ -22,6 +22,6 @@ public interface ContactService {
 	
 	List<MDictionary> findHowToContactList();
 	
-	void insertTContact(ContactForm contactForm);
+	void insertTContact(ContactForm contactForm, String userId);
 
 }

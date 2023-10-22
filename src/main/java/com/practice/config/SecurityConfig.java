@@ -19,6 +19,10 @@ import com.practice.code.RoleCode;
 @EnableWebSecurity
 public class SecurityConfig {
 		
+	private static final String ALL_ADMIN = "/admin/**";
+	private static final String ALL_STAFF = "/staff/**";
+	private static final String ALL_USER = "/user/**";
+	
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http,  HandlerMappingIntrospector introspector) throws Exception {
     	MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
@@ -28,26 +32,20 @@ public class SecurityConfig {
                 // 下記は指定権限のみアクセス可能
 	                // ユーザー切り替え
 	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.SWITH)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN, RoleCode.STAFF)
+	         
 	                // 管理者権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.ADMIN_MENU)).hasRole(RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.MAKE_ADMIN)).hasRole(RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ALL_ADMIN)).hasRole(RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ALL_ADMIN)).hasRole(RoleCode.ADMIN)
+             
 	                //スタッフ権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.MAKE_STAFF)).hasRole(RoleCode.STAFF)
-	                // 管理者・スタッフ権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.STAFF_MENU)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.JAPAN)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.SNGL_CLMN_PG)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.TW_CLMN_PG)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.USA)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
-	                // ユーザー権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ContorollerCode.CONTACT)).hasRole(RoleCode.USER)
-	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ContorollerCode.JDBC_CONTACT)).hasRole(RoleCode.USER)
-	                // 管理者・ユーザー権限
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.USER_MENU)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.CONTACT)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
-	                .requestMatchers(mvcMatcherBuilder.pattern(ContorollerCode.JDBC_CONTACT)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN)
+	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ALL_STAFF)).hasRole(RoleCode.STAFF)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ALL_STAFF)).hasAnyRole(RoleCode.STAFF, RoleCode.ADMIN)
+	                   
+	                //ユーザー権限
+	                .requestMatchers(mvcMatcherBuilder.pattern(HttpMethod.POST,ALL_USER)).hasRole(RoleCode.USER)
+	                .requestMatchers(mvcMatcherBuilder.pattern(ALL_USER)).hasAnyRole(RoleCode.USER, RoleCode.ADMIN )
 	                
-                // 上記以外は権限なしでアクセス可能
+	            // 上記以外は権限なしでアクセス可能
                 .anyRequest().permitAll();               
         })
         .formLogin(

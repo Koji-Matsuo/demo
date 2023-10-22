@@ -31,6 +31,6 @@ public interface ContactRepository {
     /**
      * データベースにデータを登録する
      */
-    void insertTContact(ContactForm contactForm);
+    void insertTContact(ContactForm contactForm, String userId);
     
 }

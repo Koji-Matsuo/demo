@@ -1,7 +1,0 @@
-body {
-	background-color: #555555;
-	background-image: url(/img/background.jpg);
-	background-repeat: no-repeat; /*背景画像の繰り返し：無効*/
-	background-position: center center;
-	background-attachment: fixed;	 /*背景画像のスクロール：固定*/
-}

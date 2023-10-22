@@ -13,11 +13,11 @@
 				<div class="navi">
 					<nav>
 						<ul class="global-nav">
-							<li><a href="staff">スタッフメニュー</a></li>
+							<li><a href="./../staff/staff">スタッフメニュー</a></li>
 							<li>問い合わせ対応</li>
-							<li>パスワード変更</li>
-							<li><a href="make_admin">ユーザー作成</a></li>
-							<li>ユーザー乗り込み</li>
+							<li>ユーザー情報</li>
+							<li><a href="./../admin/make_admin">ユーザー作成</a></li>
+							<li><a href="./../admin/ride_user">ユーザー乗り込み</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -31,7 +31,7 @@
 		</div>
 		<footer>
 			<small>(C)2017 Matsuo-studio.</small>
-				<form th:action="@{/logout}" th:method="post">
+				<form th:action="@{./../auth/logout}" th:method="post">
 					<button type="submit" class="btn">LogOut</button>
 				</form>
 		</footer>

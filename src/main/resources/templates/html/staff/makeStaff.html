@@ -9,8 +9,14 @@
 </head>
 	<body>
 	<h1>ユーザー作成</h1>
+		<th:block th:if="${message ne null}">
+		  	<div th:text="${message}" style="color:red;height:2em;"></div>
+		</th:block>
+		<th:block th:if="${message eq null}">
+		  	<div style="height:2em;"></div>
+		</th:block>
 	
-	<form th:method="post" th:action="@{make_staff}" th:object="${makeStaffForm}" >
+	<form th:method="post" th:action="@{./../staff/make_staff}" th:object="${makeStaffForm}" >
 		  <table>
 		    <tr>
 		      <th>
@@ -61,7 +67,7 @@
 		  <div style="height:20px;"></div>
 		  <button type="submit" class="btn">ユーザー作成</button>
 		  <div style="height:5px;"></div>
-		  <div><a href="auth">ログイン</a></div>
+		  <div><a href="./../staff/staff">メニュー</a></div>
 	</form>
 	</body>
 </html>

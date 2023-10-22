@@ -14,16 +14,16 @@ import com.practice.input.ContactForm;
 @Transactional
 public interface ContactMapperService {
 
-	MUser findMUser();
+	MUser findMUser(String userId);
 	
-	List<WContact> findContactListJoin();
+	List<WContact> findContactList(String userId);
 	
 		
 	List<MDictionary> findContactTypeList();
 	
 	List<MDictionary> findHowToContactList();
 	
-	void insertTContact(ContactForm form);
+	void insertTContact(ContactForm form, String userId);
 	
 
 

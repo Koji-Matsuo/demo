@@ -12,5 +12,11 @@ public interface MakeUserMapper {
      * ユーザーを作成する。
      */
     void insertMUser(MUser user);
+    
 
+    /**
+     * ユーザーを検索する。
+     */
+    MUser findMUser(String userId);
+    
 }

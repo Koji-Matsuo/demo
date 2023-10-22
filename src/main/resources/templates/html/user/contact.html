@@ -11,19 +11,29 @@
 	</head>
 	<body>
 		<header>
-			<div class="logo">問い合わせ Mybatis</div>
+			<div class="logo">
+				問い合わせ Mybatis
+					<span sec:authorize="hasRole('ADMIN')" style="color: red;;">
+            			( 管理者 ) 
+        			</span>
+			</div>
 			<div class="navi">
 				<nav>
 					<ul class="global-nav">
-						<li><a href="user">メニュー</a></li>
-						<li><a href="contactJdbc">問い合わせ JDBC</a></li>
+						<li sec:authorize="hasRole('ADMIN')">
+							<a href="./../admin/admin">
+		            			管理者メニューへ
+		        			</a>
+        			    </li>
+						<li><a href="./../user/user">メニュー</a></li>
+						<li><a href="./../user/contactJdbc">問い合わせ JDBC</a></li>
 					</ul>
 				</nav>
 			</div>
 		</header>
 		<div class="wrap">
 			<div class="work">
-				<form th:action="@{contact}" th:object="${contactForm}" th:method="post">
+				<form th:action="@{./../user/contact}" th:object="${contactForm}" th:method="post">
 					<section>
 						<h2 class="icon" id="contact">お問い合わせ</h2>
 						<dl>

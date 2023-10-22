@@ -62,11 +62,11 @@ public class ContactRepositoryImpl implements ContactRepository{
      * データベースにデータを登録する
      */
     @Override
-    public void insertTContact(ContactForm contactForm) {
+    public void insertTContact(ContactForm contactForm,String userId) {
         // 画面の入力値を設定する
     	TContact contact = getTContact(contactForm);   	
     	// ユーザー情報を設定する
-    	MUser user = findMUser("1");
+    	MUser user = findMUser(userId);
     	contact.setMailAddress(user.getMailAddress());
     	contact.setPhoneNumber(user.getPhoneNumber());
     	contact.setUserId(user.getUserId());

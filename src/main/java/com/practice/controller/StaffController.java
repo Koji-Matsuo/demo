@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.practice.code.ContorollerCode;
+import com.practice.entity.MUser;
 import com.practice.input.MakeStaffForm;
 import com.practice.input.MakeUserForm;
 import com.practice.service.MakeUserService;
@@ -63,8 +64,15 @@ public class StaffController extends SecuritySession{
 			) {
 		 // 入力チェック判定
         if (!bindingResult.hasErrors()){
+        	//重複チェック
+        	MUser user = service.findMUser(form.getUserId());
         	//登録処理
-        	service.insertStaff(form);
+        	if (user == null) {
+        		service.insertStaff(form);
+            	model.addAttribute("message","ユーザーが作成されました。");		
+        	} else {
+        		model.addAttribute("message", "ユーザーがすでに存在しています。");
+        	}
         }
         model.addAttribute("makeStaffForm",form);
         return ContorollerCode.MAKE_STAFF_URL;

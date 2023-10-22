@@ -16,12 +16,12 @@ public interface ContactMapper {
     /**
      * 一覧を取得する。
      */
-    List<WContact> findContactListJoin();
+    List<WContact> findContactList(String userId);
 
 	/**
      * ユーザー情報を取得する。
      */
-    MUser findMUser();
+    MUser findMUser(String userId);
     
     /**
      *　お問い合わせ種別を取得する。
@@ -32,12 +32,6 @@ public interface ContactMapper {
      *　ご希望の連絡方法を取得する。
      */
     List<MDictionary> findHowToContactList();
-    
-
-    /**
-     *　ご希望の連絡方法を取得する。
-     */
-    List<MDictionary> findHowToContactListJoin();
     
     /**
      * データベースにデータを登録する

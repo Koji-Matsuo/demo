@@ -20,9 +20,9 @@
 	<th:block th:unless="${session['SPRING_SECURITY_LAST_EXCEPTION'] eq null}">
 	  <div th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" style="color:red;height:1em;">ログインIDまはたパスワードが間違っています。</div>
 	</th:block>
-	
+		 
 	 <div style="height:1em;"></div>
-	<form th:action="@{/auth}" th:method="POST" >
+	<form th:action="@{./../auth/auth}" th:method="POST" >
 		  <table>
 		    <tr>
 		      <th>ログインID</th>
@@ -36,7 +36,7 @@
 		  <div style="height:20px;"></div>
 		  <button type="submit" class="btn">ログイン</button>
 		  <div style="height:5px;"></div>
-		  <div><a href="make_user">ユーザー作成</a></div>
+		  <div><a href="./../auth/make_user">ユーザー作成</a></div>
 	</form>
 	</body>
 </html>
