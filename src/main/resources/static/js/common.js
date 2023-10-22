@@ -16,7 +16,7 @@ function formSubmit(form, path, isRole = true){
 		return;
 	}
 	let pathRole = path.split('/')[2];
-	if (pathRole != 'admin' && pathRole != 'USER' && pathRole == 'STAFF'){
+	if (pathRole != 'admin' && pathRole != 'user' && pathRole == 'staff'){
 		alert('パスの権限が不正です。');
 		return;
     }
