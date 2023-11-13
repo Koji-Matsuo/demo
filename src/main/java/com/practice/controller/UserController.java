@@ -2,7 +2,6 @@ package com.practice.controller;
 
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +25,13 @@ import com.practice.session.SecuritySession;
 @Controller
 public class UserController extends SecuritySession{
 	
-	@Autowired private ContactMapperService mapperService;
-	@Autowired private ContactService service;
+	private final ContactMapperService mapperService;
+	private final ContactService service;
+	//コンストラクタインジェクション
+	UserController(ContactMapperService mapperService, ContactService service){
+		this.mapperService = mapperService;
+		this.service = service;
+	}
 	
 	/**
 	 * 管理者権限で乗り込んでいるか確認する。

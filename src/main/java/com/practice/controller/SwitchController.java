@@ -2,7 +2,6 @@ package com.practice.controller;
 
 import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,16 @@ import com.practice.session.SecuritySession;
 @Controller
 public class SwitchController extends SecuritySession{
 
-	@Autowired
-	private UserController userCnt;
+	private final UserController userCnt;
+	private final StaffController stfCnt;
+	private final AdminController adminCnt;
 	
-	@Autowired
-	private StaffController stfCnt;
-	
-	@Autowired
-	private AdminController adminCnt;
-	
+	//コンストラクタインジェクション
+	SwitchController(UserController userCnt, StaffController stfCnt, AdminController adminCnt){
+		this.userCnt = userCnt;
+		this.stfCnt = stfCnt;
+		this.adminCnt = adminCnt;
+	}
 	
 	@GetMapping(ContorollerCode.SWITH)
 	public String swtch(Model model) {

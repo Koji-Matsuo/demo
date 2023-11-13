@@ -1,7 +1,5 @@
 package com.practice.input;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.practice.mapper.LoginFormMapper;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -11,8 +9,12 @@ import lombok.Data;
 @Data
 public class MakeAdminForm {
 	
-	@Autowired
-	private LoginFormMapper mapper;
+	
+	private final LoginFormMapper mapper;
+	//コンストラクタインジェクション
+	MakeAdminForm(LoginFormMapper mapper){
+		this.mapper = mapper;
+	}
 	
 	/** ユーザーID.*/
 	@NotEmpty(message = "ユーザーIDを選択してください。")

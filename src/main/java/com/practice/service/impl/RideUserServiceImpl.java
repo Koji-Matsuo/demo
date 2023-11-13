@@ -2,7 +2,6 @@ package com.practice.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +13,12 @@ import com.practice.service.RideUserService;
 @Transactional
 public class RideUserServiceImpl implements RideUserService{
 
-	RideUserServiceImpl(){
-	}
+	private final RideUserMapper mapper;
 	
-	@Autowired private RideUserMapper mapper;
- 
+	//コンストラクタインジェクション
+	RideUserServiceImpl(RideUserMapper mapper){
+	    this.mapper =  mapper;
+	}
 	
 	 public List<MUser> findRideMUser() {		
 		return mapper.findRideMUser();

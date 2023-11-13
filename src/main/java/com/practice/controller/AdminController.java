@@ -1,6 +1,5 @@
 package com.practice.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,11 +23,14 @@ import com.practice.session.SecuritySession;
 @Controller
 public class AdminController extends SecuritySession{
 	
-	@Autowired
-	private MakeUserService mkUserService;
-	@Autowired
-	private RideUserService rdUserService;
-
+	
+	private final MakeUserService mkUserService;
+	private final RideUserService rdUserService;
+	//コンストラクタインジェクション
+	AdminController(MakeUserService mkUserService, RideUserService rdUserService ){
+		this.mkUserService = mkUserService;
+		this.rdUserService = rdUserService;
+	}
 	
 	/**
 	 * メニュー画面。

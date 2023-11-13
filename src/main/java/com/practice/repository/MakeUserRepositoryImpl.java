@@ -1,6 +1,5 @@
 package com.practice.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.practice.entity.MUser;
@@ -10,7 +9,12 @@ import com.practice.mapper.MakeUserMapper;
 public class MakeUserRepositoryImpl implements MakeUserRepository{	
       
    
-    @Autowired private MakeUserMapper mapper;    
+    private final MakeUserMapper mapper;    
+    
+    //コンストラクタインジェクション
+    MakeUserRepositoryImpl(MakeUserMapper mapper){
+    	this.mapper = mapper;
+    }
     
     /**
      * ユーザー登録（USER）.

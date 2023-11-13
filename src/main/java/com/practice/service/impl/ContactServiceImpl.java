@@ -2,7 +2,6 @@ package com.practice.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,12 +16,13 @@ import com.practice.service.ContactService;
 @Transactional
 public class ContactServiceImpl implements ContactService{
 	
-	
-	ContactServiceImpl(){
+	private final ContactRepository repository;
+
+	//コンストラクタインジェクション
+	ContactServiceImpl(ContactRepository repository){
+		this.repository = repository;
 	}
 	
-	@Autowired private ContactRepository repository;
-
     /**
      * 一覧を取得する。
      * @return t_contact データ一覧。

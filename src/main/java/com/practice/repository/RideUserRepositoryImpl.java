@@ -2,7 +2,6 @@ package com.practice.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.practice.entity.MUser;
@@ -12,8 +11,12 @@ import com.practice.mapper.RideUserMapper;
 public class RideUserRepositoryImpl implements RideUserRepository{	
       
    
-    @Autowired private RideUserMapper mapper;    
-    
+    private final RideUserMapper mapper;    
+
+    //コンストラクタインジェクション
+    RideUserRepositoryImpl(RideUserMapper mapper) {
+    	this.mapper = mapper;
+    }
     /**
      * ユーザー検索.
      */

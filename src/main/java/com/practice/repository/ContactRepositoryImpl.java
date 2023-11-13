@@ -2,7 +2,6 @@ package com.practice.repository;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.DataClassRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -15,9 +14,11 @@ import com.practice.input.ContactForm;
 @Repository
 public class ContactRepositoryImpl implements ContactRepository{	
       
-    public ContactRepositoryImpl() {
+	private final JdbcTemplate jdbcTemplate;
+	//コンストラクタインジェクション
+	public ContactRepositoryImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
-    @Autowired private JdbcTemplate jdbcTemplate;
     
     /**
      * 一覧を取得する。

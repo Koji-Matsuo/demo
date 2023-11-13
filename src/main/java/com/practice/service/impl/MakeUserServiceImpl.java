@@ -1,6 +1,5 @@
 package com.practice.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,14 +16,16 @@ import com.practice.service.MakeUserService;
 @Transactional
 public class MakeUserServiceImpl implements MakeUserService{
 
-	MakeUserServiceImpl(){
-	}
 	
-	@Autowired private MakeUserMapper mapper;
- 
-    @Autowired
-    private SecurityConfig security;
+	private final MakeUserMapper mapper;
+    private final SecurityConfig security;
 
+    //コンストラクタインジェクション
+    MakeUserServiceImpl(SecurityConfig security, MakeUserMapper mapper){
+	    this.security = security;
+	    this.mapper = mapper;
+    }
+	
     
     /**
      * ユーザー登録（ADMIN）.

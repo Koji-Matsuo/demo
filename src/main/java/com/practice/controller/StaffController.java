@@ -1,6 +1,5 @@
 package com.practice.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +21,11 @@ import com.practice.session.SecuritySession;
 @Controller
 public class StaffController extends SecuritySession{
 
-	@Autowired
-	private MakeUserService service;
+	private final MakeUserService service;
+	//コンストラクタインジェクション
+	StaffController(MakeUserService service){
+	    this.service = service;	
+	}
 	
 	@GetMapping(ContorollerCode.STAFF_MENU)
 	public String staff() {

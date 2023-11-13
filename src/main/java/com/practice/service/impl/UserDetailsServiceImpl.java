@@ -1,6 +1,5 @@
 package com.practice.service.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,8 +13,11 @@ import com.practice.mapper.LoginFormMapper;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	
-	@Autowired
-	private LoginFormMapper mapper;
+	private final LoginFormMapper mapper;
+	//コンストラクタインジェクション
+	UserDetailsServiceImpl(LoginFormMapper mapper){
+		this.mapper = mapper;
+	}
 	
 	@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

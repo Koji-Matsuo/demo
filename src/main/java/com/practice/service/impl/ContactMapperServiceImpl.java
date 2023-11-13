@@ -2,7 +2,6 @@ package com.practice.service.impl;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,10 +17,12 @@ import com.practice.service.ContactMapperService;
 @Transactional
 public class ContactMapperServiceImpl implements ContactMapperService{
 
-	ContactMapperServiceImpl(){
+	private final ContactMapper mapper;
+	//コンストラクタインジェクション
+	ContactMapperServiceImpl(ContactMapper mapper){
+		this.mapper = mapper;
 	}
-	
-	@Autowired private ContactMapper mapper;
+
 
     /**
      * ユーザー情報を取得する。
